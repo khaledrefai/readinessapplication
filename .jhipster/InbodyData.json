@@ -1,0 +1,29 @@
+{
+  "name": "InbodyData",
+  "fields": [
+    {
+      "fieldName": "userID",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "columnName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "columnValue",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210313162207",
+  "entityTableName": "inbody_data",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

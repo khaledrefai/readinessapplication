@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span>In Body Results Sheets</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-in-body-results-sheet" [routerLink]="['/in-body-results-sheet/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new In Body Results Sheet
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="inBodyResultsSheets?.length === 0">
+        <span>No inBodyResultsSheets found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="inBodyResultsSheets && inBodyResultsSheets.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userId"><span>User Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="datetimes"><span>Datetimes</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="orderDate"><span>Order Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="inbodyImage"><span>Inbody Image</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let inBodyResultsSheet of inBodyResultsSheets ;trackBy: trackId">
+                    <td><a [routerLink]="['/in-body-results-sheet', inBodyResultsSheet.id, 'view']">{{ inBodyResultsSheet.id }}</a></td>
+                    <td>{{ inBodyResultsSheet.userId }}</td>
+                    <td>{{ inBodyResultsSheet.datetimes | date:'medium' }}</td>
+                    <td>{{ inBodyResultsSheet.orderDate | date:'medium' }}</td>
+                    <td>{{ inBodyResultsSheet.inbodyImage }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/in-body-results-sheet', inBodyResultsSheet.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/in-body-results-sheet', inBodyResultsSheet.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(inBodyResultsSheet)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="inBodyResultsSheets && inBodyResultsSheets.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

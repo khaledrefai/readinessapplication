@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="inbodyData">
+            <h2><span>Inbody Data</span> {{ inbodyData.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>User ID</span></dt>
+                <dd>
+                    <span>{{ inbodyData.userID }}</span>
+                </dd>
+                <dt><span>Column Name</span></dt>
+                <dd>
+                    <span>{{ inbodyData.columnName }}</span>
+                </dd>
+                <dt><span>Column Value</span></dt>
+                <dd>
+                    <span>{{ inbodyData.columnValue }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/inbody-data', inbodyData.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
