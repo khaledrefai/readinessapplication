@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>Member Data</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-member-data" [routerLink]="['/member-data/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Member Data
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="memberData?.length === 0">
+        <span>No memberData found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="memberData && memberData.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Test Date</span></th>
+                    <th scope="col" ><span>User Id</span></th>
+                    <th scope="col" ><span>User Name</span></th>
+                    <th scope="col" ><span>User Gender</span></th>
+                    <th scope="col" ><span>User Birthday</span></th>
+                    <th scope="col" ><span>User Age</span></th>
+                    <th scope="col" ><span>User Height</span></th>
+                    <th scope="col" ><span>Order Date</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let memberData of memberData ;trackBy: trackId">
+                    <td><a [routerLink]="['/member-data', memberData.id, 'view']">{{ memberData.id }}</a></td>
+                    <td>{{ memberData.testDate | date:'medium' }}</td>
+                    <td>{{ memberData.userId }}</td>
+                    <td>{{ memberData.userName }}</td>
+                    <td>{{ memberData.userGender }}</td>
+                    <td>{{ memberData.userBirthday }}</td>
+                    <td>{{ memberData.userAge }}</td>
+                    <td>{{ memberData.userHeight }}</td>
+                    <td>{{ memberData.orderDate | date:'medium' }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/member-data', memberData.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/member-data', memberData.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(memberData)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

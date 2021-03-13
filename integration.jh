@@ -1,27 +1,27 @@
 
 entity MemberData {
 	testDate Instant
-	 userId Number
+	 userId Integer
      userName String
      userGender String
      userBirthday String
-     userAge Number
+     userAge Integer
      userHeight Float
-     orderDate Date
+     orderDate Instant
      
  }
 
 entity InbodyData {
-	userID Number
+	userID Integer
     columnName String
     ColumnValue String
     
 }
 
 entity  InBodyResultsSheet {
-	userId Number
+	userId Integer
     datetimes Instant
-    orderDate Date
+    orderDate Instant
     InbodyImage String
 }
 
